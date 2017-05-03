@@ -29,14 +29,13 @@ class ModelWrapper(object):
         self.epoch = epoch
         self.loss.append(logs.get('loss'))
         self.val_loss.append(logs.get('val_loss'))
-        if self.save_freq and self.epoch % self.save_freq:
+        if self.save_freq and (self.epoch + 1) % self.save_freq == 0:
             self.save(path=self.save_path)
 
     def fit(self, *args, **kwargs):
         """Wrapper around "fit" method."""
-        kwargs.setdefault('callbacks', [
-            LambdaCallback(on_epoch_end=self._on_epoch_end)
-        ]).append()
+        callbacks = kwargs.setdefault('callbacks', [])
+        callbacks.append(LambdaCallback(on_epoch_end=self._on_epoch_end))
         return self.model.fit(*args, **kwargs)
 
     def evaluate(self, *args, **kwargs):
@@ -57,13 +56,13 @@ class ModelWrapper(object):
             raise RuntimeError('Must have a name to save model.')
         fname = os.path.join(path, self.name + '.%s.json' % self.epoch)
         with open(fname, 'w') as outfile:
-            json.dump(outfile, {
+            json.dump({
                 'name': self.name,
                 'loss': self.loss,
                 'val_loss': self.val_loss,
                 'epoch': self.epoch,
                 'save_path': self.save_path,
-            })
+            }, outfile)
         fname = os.path.join(path, self.name + '.%s.h5' % self.epoch)
         self.model.save(fname)
 

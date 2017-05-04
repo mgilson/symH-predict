@@ -38,5 +38,5 @@ To get everything running, you'll need to install the following libraries:
 3. h5py (this is an implicit, soft dependency of Keras, but is necessary to save the model's state)
 4. Jupyter
 
-The main code is contained in [`symH.ipynb`](symH.ipynb).  There is a write-up of the project background, methodologies, results etc in [`MachineLearningCapstone.pdf`](MachineLearningCapstone.pdf)
+The main code is contained in [`symH.ipynb`](symH.ipynb).  There is a write-up of the project background, methodologies, results etc in my [`Machine Learning Capstone report`](https://docs.google.com/document/d/1UWl11pkCljzsoszNFkMvgGw15hBghrBXFmjZGWBVxrE/edit?usp=sharing)
 

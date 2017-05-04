@@ -31,4 +31,12 @@ script to pack the OMNIWeb CSVs into a sqlite database:
 tools/omni_csv_2_sqlite3.py /path/to/csvs/*
 ```
 
+To get everything running, you'll need to install the following libraries:
+
+1. Tensorflow (I installed tf 1.1 from source)
+2. Keras
+3. h5py (this is an implicit, soft dependency of Keras, but is necessary to save the model's state)
+4. Jupyter
+
+The main code is contained in [`symH.ipynb`](symH.ipynb).  There is a write-up of the project background, methodologies, results etc in [`MachineLearningCapstone.pdf`](MachineLearningCapstone.pdf)
 
